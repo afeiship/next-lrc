@@ -2,8 +2,8 @@
  * name: @jswork/next-lrc
  * description: A javascript lrc parser.
  * homepage: https://github.com/afeiship/next-lrc
- * version: 1.0.4
- * date: 2020-11-21 16:24:23
+ * version: 1.0.5
+ * date: 2020-11-21 16:24:59
  * license: MIT
  */
 
