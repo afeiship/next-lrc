@@ -2,15 +2,15 @@
  * name: @jswork/next-lrc
  * description: A javascript lrc parser.
  * homepage: https://github.com/afeiship/next-lrc
- * version: 1.0.0
- * date: 2020-11-21 12:25:52
+ * version: 1.0.1
+ * date: 2020-11-21 12:31:09
  * license: MIT
  */
 
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@jswork/next');
-  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/ };
+  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/, callback: nx.stubValue };
   var clock2timestamp = function (value) {
     var res = value.split(/[.:]/);
     var minute = parseInt(res[0]);
@@ -24,11 +24,11 @@
     var lines = inContent.split('\n');
     return lines.map(function (line) {
       var matches = options.regexp.exec(line);
-      return {
+      return options.callback({
         clock: matches[1],
         timestamp: clock2timestamp(matches[1]),
         value: matches[2]
-      };
+      });
     });
   };
 
