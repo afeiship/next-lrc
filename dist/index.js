@@ -3,7 +3,7 @@
  * description: A javascript lrc parser.
  * homepage: https://github.com/afeiship/next-lrc
  * version: 1.0.1
- * date: 2020-11-21 12:31:09
+ * date: 2020-11-21 12:38:40
  * license: MIT
  */
 
@@ -22,13 +22,16 @@
   nx.lrc = function (inContent, inOptions) {
     var options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
     var lines = inContent.split('\n');
-    return lines.map(function (line) {
+    return lines.map(function (line, index) {
       var matches = options.regexp.exec(line);
-      return options.callback({
-        clock: matches[1],
-        timestamp: clock2timestamp(matches[1]),
-        value: matches[2]
-      });
+      return options.callback(
+        {
+          clock: matches[1],
+          timestamp: clock2timestamp(matches[1]),
+          value: matches[2]
+        },
+        index
+      );
     });
   };
 
