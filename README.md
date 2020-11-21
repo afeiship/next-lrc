@@ -42,6 +42,7 @@ nx.lrc(content);
     duration: 7720
   },
   // ....
+*/
 ```
 
 ## license
