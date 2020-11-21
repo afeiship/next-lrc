@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-lrc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A javascript lrc parser.",
   "homepage": "https://github.com/afeiship/next-lrc",
   "author": {
@@ -38,5 +38,13 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "keywords": []
+  "keywords": [
+    "next",
+    "lrc",
+    "parser",
+    "lyric",
+    "lyricist",
+    "music",
+    "story"
+  ]
 }
