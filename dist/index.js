@@ -3,14 +3,14 @@
  * description: A javascript lrc parser.
  * homepage: https://github.com/afeiship/next-lrc
  * version: 1.0.2
- * date: 2020-11-21 12:39:26
+ * date: 2020-11-21 14:05:43
  * license: MIT
  */
 
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@jswork/next');
-  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/, callback: nx.stubValue };
+  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/, callback: nx.stubValue, filter: Boolean };
   var clock2timestamp = function (value) {
     var res = value.split(/[.:]/);
     var minute = parseInt(res[0]);
@@ -21,7 +21,7 @@
 
   nx.lrc = function (inContent, inOptions) {
     var options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
-    var lines = inContent.split('\n');
+    var lines = inContent.split('\n').filter(options.filter);
     return lines.map(function (line, index) {
       var matches = options.regexp.exec(line);
       return options.callback(
