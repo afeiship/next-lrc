@@ -21,18 +21,21 @@ nx.lrc(content);
   {
     clock: '00:00.800',
     timestamp: 800,
+    duration: 5400,
     value: '--- lesson 1  A private conversation 私人谈话'
   },
   {
     clock: '00:06.200',
     timestamp: 6200,
+    duration: 5920,
     value: '--- First listen and then answer the question.^听录音，然后回答以下问题。'
   },
   {
     clock: '00:12.120',
     timestamp: 12120,
+    duration: 7720,
     value: '--- Why did the writer complain to the people behind him?'
-  },
+  }
   // ...
 ]
 ```
