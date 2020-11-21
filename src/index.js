@@ -11,11 +11,14 @@
     return 60 * 1e3 * minute + 1e3 * second + micro;
   };
 
-  var getDuration = function (current, next) {
-    if (!next) return 0;
+  var getTimes = function (current, next) {
+    if (!next) return { times: [], duration: 0 };
     var matches1 = CLOCK_RE.exec(current);
     var matches2 = CLOCK_RE.exec(next);
-    return clock2timestamp(matches2[1]) - clock2timestamp(matches1[1]);
+    return {
+      times: [matches1[1], matches2[1]],
+      duration: clock2timestamp(matches2[1]) - clock2timestamp(matches1[1])
+    };
   };
 
   nx.lrc = function (inContent, inOptions) {
@@ -24,14 +27,16 @@
     return lines.map(function (line, index) {
       var next = lines[index + 1];
       var matches = options.regexp.exec(line);
-      var duration = getDuration(line, next);
+      var times = getTimes(line, next);
       return options.callback(
-        {
-          clock: matches[1],
-          timestamp: clock2timestamp(matches[1]),
-          duration: duration,
-          value: matches[2]
-        },
+        nx.mix(
+          {
+            clock: matches[1],
+            timestamp: clock2timestamp(matches[1]),
+            value: matches[2]
+          },
+          times
+        ),
         index
       );
     });
