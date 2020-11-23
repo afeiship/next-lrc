@@ -1,7 +1,8 @@
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@jswork/next');
-  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/, callback: nx.stubValue, filter: Boolean };
+  var isValidLrc = nx.isValidLrc || require('@jswork/next-is-valid-lrc');
+  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/, callback: nx.stubValue, filter: isValidLrc };
   var CLOCK_RE = /\[(.*?)\]/;
   var clock2timestamp = function (value) {
     var res = value.split(/[.:]/);
