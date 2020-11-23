@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-lrc",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A javascript lrc parser.",
   "homepage": "https://github.com/afeiship/next-lrc",
   "author": {
@@ -45,7 +45,9 @@
     "lyric",
     "lyricist",
     "music",
-    "story"
+    "story",
+    "audio",
+    "javascript-lrc-parser"
   ],
   "dependencies": {
     "@jswork/next-is-valid-lrc": "^1.0.0"
