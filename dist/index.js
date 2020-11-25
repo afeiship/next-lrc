@@ -3,7 +3,7 @@
  * description: A javascript lrc parser.
  * homepage: https://github.com/afeiship/next-lrc
  * version: 1.0.6
- * date: 2020-11-23 13:34:36
+ * date: 2020-11-25 16:20:27
  * license: MIT
  */
 
@@ -11,15 +11,10 @@
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@jswork/next');
   var isValidLrc = nx.isValidLrc || require('@jswork/next-is-valid-lrc');
-  var DEFAULT_OPTIONS = { regexp: /\[(.*?)\](.*)/, callback: nx.stubValue, filter: isValidLrc };
+  var clock2time = nx.clock2time || require('@jswork/next-clock2time');
+  var DEFAULT_OPTIONS = { filter: isValidLrc };
   var CLOCK_RE = /\[(.*?)\]/;
-  var clock2timestamp = function (value) {
-    var res = value.split(/[.:]/);
-    var minute = parseInt(res[0]);
-    var second = parseInt(res[1]);
-    var micro = parseInt(res[2]);
-    return 60 * 1e3 * minute + 1e3 * second + micro;
-  };
+  var LRC_RE = /\[(.*?)\](.*)/;
 
   var getTimes = function (current, next) {
     if (!next) return { times: [], duration: 0 };
@@ -27,7 +22,7 @@
     var matches2 = CLOCK_RE.exec(next);
     return {
       times: [matches1[1], matches2[1]],
-      duration: clock2timestamp(matches2[1]) - clock2timestamp(matches1[1])
+      duration: clock2time(matches2[1]) - clock2time(matches1[1])
     };
   };
 
@@ -36,18 +31,11 @@
     var lines = inContent.split('\n').filter(options.filter);
     return lines.map(function (line, index) {
       var next = lines[index + 1];
-      var matches = options.regexp.exec(line);
+      var matches = LRC_RE.exec(line);
       var times = getTimes(line, next);
-      return options.callback(
-        nx.mix(
-          {
-            clock: matches[1],
-            timestamp: clock2timestamp(matches[1]),
-            value: matches[2]
-          },
-          times
-        ),
-        index
+      return nx.mix(
+        { clock: matches[1], timestamp: clock2time(matches[1]), value: matches[2] },
+        times
       );
     });
   };

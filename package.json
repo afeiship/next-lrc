@@ -50,6 +50,7 @@
     "javascript-lrc-parser"
   ],
   "dependencies": {
+    "@jswork/next-clock2time": "^1.0.0",
     "@jswork/next-is-valid-lrc": "^1.0.0"
   }
 }
