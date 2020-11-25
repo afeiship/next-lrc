@@ -14,10 +14,9 @@ npm install -S @jswork/next-lrc
 ## usage
 ```js
 import '@jswork/next-lrc';
-import '@jswork/next-fs-read';
 
-const content = nx.fsRead('./__tests__/E201.lrc', { charset: 'gbk' });
-nx.lrc(content);
+const str = fs.readFileSync('./__tests__/E203.lrc').toString();
+nx.lrc(str);
 /*
 [
   {

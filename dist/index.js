@@ -3,7 +3,7 @@
  * description: A javascript lrc parser.
  * homepage: https://github.com/afeiship/next-lrc
  * version: 1.0.7
- * date: 2020-11-25 16:21:46
+ * date: 2020-11-25 16:26:26
  * license: MIT
  */
 

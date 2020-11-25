@@ -2,6 +2,7 @@
   require('../src');
 
   require('@jswork/next-fs-read');
+  const fs = require('fs');
 
   describe('api.basic test', () => {
     test('nx.lrc basic case', function () {
@@ -25,7 +26,7 @@
     });
 
     test('nx.lrc default filter should filter `empty/invalid` item', function () {
-      const content = nx.fsRead('./__tests__/E202.lrc', { charset: 'gbk' });
+      const content = fs.readFileSync('./__tests__/E203.lrc').toString();
       const res = nx.lrc(content);
       expect(res.length).toBe(28);
     });
