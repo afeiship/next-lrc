@@ -8,7 +8,7 @@
  */
 
 (function () {
-  var global = global || this || window || Function('return this')();
+  var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
   var isValidLrc = nx.isValidLrc || require('@jswork/next-is-valid-lrc');
   var clock2time = nx.clock2time || require('@jswork/next-clock2time');
